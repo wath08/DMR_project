@@ -1,12 +1,12 @@
 <template>
-  <div class="px-8 py-8 bg-slate-50/60 min-h-full">
+  <div class="px-4 md:px-8 py-6 md:py-8 bg-slate-50/60 min-h-full w-full">
     <div class="mb-6">
-      <h1 class="text-[24px] font-heading font-bold text-slate-900 tracking-tight">Patient Management System</h1>
-      <p class="text-[14px] text-slate-500 mt-1 font-medium">Overview of healthcare operations, patient volume, and recent activities.</p>
+      <h1 class="text-[20px] md:text-[24px] font-heading font-bold text-slate-900 tracking-tight">Patient Management System</h1>
+      <p class="text-[13px] md:text-[14px] text-slate-500 mt-1 font-medium">Overview of healthcare operations, patient volume, and recent activities.</p>
     </div>
 
         <!-- Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8 font-sans">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-8 font-sans w-full">
           <!-- Card 1: Total Patients -->
           <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 flex items-center hover:shadow-md transition-shadow">
             <div class="w-[52px] h-[52px] flex items-center justify-center bg-teal-50 text-teal-600 rounded-xl mr-4 shrink-0">

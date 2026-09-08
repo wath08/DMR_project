@@ -52,10 +52,10 @@
     </div>
 
     <!-- Main Settings Card -->
-    <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden flex flex-col md:flex-row">
+    <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden flex flex-col lg:flex-row">
       
       <!-- Left Vertical Navigation Tabs -->
-      <div class="w-full md:w-64 border-b md:border-b-0 md:border-r border-slate-100 bg-slate-50/40 p-5 flex flex-col gap-1.5 shrink-0">
+      <div class="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-slate-100 bg-slate-50/40 p-5 flex flex-col gap-1.5 shrink-0">
         <button 
           @click="activeTab = 'profile'" 
           :class="[

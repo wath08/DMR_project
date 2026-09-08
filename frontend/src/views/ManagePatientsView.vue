@@ -5,8 +5,8 @@
         <h1 class="text-[24px] font-heading font-bold text-slate-900 tracking-tight">Patients</h1>
         <p class="text-[14px] text-slate-500 mt-1 font-medium">Manage patient profiles, demographics, and contact information.</p>
       </div>
-      <button @click="openAddModal" class="flex items-center gap-2 px-4 py-2.5 bg-teal-600 text-white rounded-lg font-semibold text-sm hover:bg-teal-700 transition-colors shadow-sm cursor-pointer">
-        <Plus class="w-4 h-4" />
+      <button @click="openAddModal" class="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-teal-600 text-white rounded-lg font-semibold text-[13px] sm:text-sm hover:bg-teal-700 transition-colors shadow-sm cursor-pointer shrink-0 whitespace-nowrap">
+        <Plus class="w-4 h-4 shrink-0" />
         <span>Add Patient</span>
       </button>
     </div>
@@ -14,18 +14,18 @@
     <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col">
       <!-- Table Header Options -->
       <div class="p-6 border-b border-slate-100 bg-white">
-            <div class="flex flex-col md:flex-row gap-4 items-end justify-between">
+            <div class="flex flex-col xl:flex-row gap-4 items-start xl:items-end justify-between">
               <!-- Search Bar -->
-              <div class="relative w-full md:w-[400px] flex-none">
+              <div class="relative w-full xl:w-[400px] shrink-0">
                 <Search class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                 <input type="text" v-model="searchQuery" placeholder="Search patients by name, ID, or phone..." class="w-full py-2.5 pl-11 pr-4 bg-slate-50 border border-slate-200 rounded-lg text-[13px] text-slate-600 focus:outline-none focus:border-teal-500 focus:bg-white shadow-sm transition-colors" />
               </div>
               
-              <div class="flex flex-wrap gap-4">
+              <div class="grid grid-cols-2 xl:flex xl:flex-row gap-4 w-full xl:w-auto">
                 <!-- Custom Gender Dropdown -->
                 <div class="flex flex-col gap-1 relative dropdown-container">
                   <label class="text-[12px] font-semibold text-slate-700">Gender</label>
-                  <button @click.stop="isGenderOpen = !isGenderOpen; isSortOpen = false" class="relative w-[120px] py-2.5 pl-3 pr-8 bg-slate-50 border border-slate-200 rounded-lg text-[13px] text-slate-600 focus:outline-none cursor-pointer flex items-center hover:bg-white transition-colors text-left shadow-sm">
+                  <button @click.stop="isGenderOpen = !isGenderOpen; isSortOpen = false" class="relative w-full xl:w-[120px] py-2.5 pl-3 pr-8 bg-slate-50 border border-slate-200 rounded-lg text-[13px] text-slate-600 focus:outline-none cursor-pointer flex items-center hover:bg-white transition-colors text-left shadow-sm">
                     <span class="truncate block w-full">{{ filterGender }}</span>
                     <ChevronDown class="absolute right-3 w-4 h-4 text-slate-400 pointer-events-none transition-transform duration-200" :class="{'rotate-180': isGenderOpen}" />
                   </button>
@@ -39,7 +39,7 @@
                 <!-- Custom Sort Dropdown -->
                 <div class="flex flex-col gap-1 relative dropdown-container">
                   <label class="text-[12px] font-semibold text-slate-700">Sort By</label>
-                  <button @click.stop="isSortOpen = !isSortOpen; isGenderOpen = false" class="relative w-[140px] py-2.5 pl-3 pr-8 bg-slate-50 border border-slate-200 rounded-lg text-[13px] text-slate-600 focus:outline-none cursor-pointer flex items-center hover:bg-white transition-colors text-left shadow-sm">
+                  <button @click.stop="isSortOpen = !isSortOpen; isGenderOpen = false" class="relative w-full xl:w-[140px] py-2.5 pl-3 pr-8 bg-slate-50 border border-slate-200 rounded-lg text-[13px] text-slate-600 focus:outline-none cursor-pointer flex items-center hover:bg-white transition-colors text-left shadow-sm">
                     <span class="truncate block w-full">{{ currentSort }}</span>
                     <ChevronDown class="absolute right-3 w-4 h-4 text-slate-400 pointer-events-none transition-transform duration-200" :class="{'rotate-180': isSortOpen}" />
                   </button>

@@ -1,7 +1,7 @@
 <template>
   <div class="p-8 bg-slate-50/60 min-h-full">
     <!-- Page Header & Action Bar -->
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
       <div>
         <h1 class="text-2xl font-bold font-heading text-slate-900 tracking-tight flex items-center gap-2.5">
           <BarChart3 class="w-7 h-7 text-teal-600" />
@@ -12,8 +12,8 @@
 
       <div class="flex items-center gap-3 flex-wrap">
         <!-- Date Selector -->
-        <div class="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-xs text-xs font-semibold text-slate-700">
-          <Calendar class="w-4 h-4 text-teal-600" />
+        <div class="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-xs text-xs font-semibold text-slate-700 whitespace-nowrap shrink-0">
+          <Calendar class="w-4 h-4 text-teal-600 shrink-0" />
           <span>2026 Live Database Analytics</span>
         </div>
 
@@ -22,7 +22,7 @@
           type="button"
           @click="showExportModal = true; exportSelectedMonth = selectedMonthKey"
           :disabled="isExporting"
-          class="flex items-center gap-2 px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white rounded-xl text-xs font-bold shadow-xs hover:shadow-md transition-all cursor-pointer disabled:opacity-50"
+          class="flex items-center gap-2 px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white rounded-xl text-xs font-bold shadow-xs hover:shadow-md transition-all cursor-pointer disabled:opacity-50 whitespace-nowrap shrink-0"
         >
           <Download class="w-4 h-4 shrink-0" :class="{'animate-bounce': isExporting}" />
           <span>{{ isExporting ? 'Exporting...' : 'Export Excel / CSV' }}</span>
@@ -267,9 +267,9 @@
         </div>
 
         <!-- Center Ring with Dynamic Total Badge -->
-        <div class="relative w-full h-60 sm:h-64 my-auto flex items-center justify-center">
+        <div class="relative w-full h-80 sm:h-72 my-auto flex items-center justify-center">
           <Doughnut v-if="deptChartData" :data="deptChartData" :options="doughnutOptions" />
-          <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-12">
+          <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-16 sm:pb-12">
             <span class="text-xl font-extrabold text-slate-800 font-mono leading-none">
               {{ reportData?.summary?.totalEncounters ?? 0 }}
             </span>
@@ -326,7 +326,7 @@
                   </td>
                   <td class="px-6 py-3.5">
                     <div class="flex items-center gap-3">
-                      <div class="flex-1 max-w-[100px] h-2 bg-slate-100 rounded-full overflow-hidden">
+                      <div class="w-full max-w-[100px] h-2 bg-slate-100 rounded-full overflow-hidden shrink-0">
                         <div class="h-full bg-teal-600 rounded-full transition-all duration-500" :style="{ width: d.percentage + '%' }"></div>
                       </div>
                       <span class="text-xs font-extrabold text-slate-700 font-mono w-8 text-right shrink-0">{{ d.percentage }}%</span>
@@ -392,7 +392,7 @@
               </td>
               <td class="px-6 py-4">
                 <div class="flex items-center gap-3">
-                  <div class="flex-1 max-w-[130px] h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="w-full max-w-[130px] h-2 bg-slate-100 rounded-full overflow-hidden shrink-0">
                     <div 
                       class="h-full bg-teal-600 rounded-full transition-all duration-500" 
                       :style="{ width: Math.min(100, Math.round((doc.encounters / (reportData.summary.totalEncounters || 1)) * 100)) + '%' }"

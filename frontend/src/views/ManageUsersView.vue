@@ -14,7 +14,7 @@
     </Transition>
 
     <!-- Page Header & Action Bar -->
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-8">
       <div>
         <h1 class="text-2xl font-bold font-heading text-slate-900 tracking-tight flex items-center gap-2.5">
           <Users class="w-7 h-7 text-teal-600" />
