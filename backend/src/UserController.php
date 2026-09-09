@@ -503,7 +503,6 @@ class UserController {
             $currentMonth = date('m');
             $currentYear = date('Y');
             $newPatients = Patient::whereRaw("MONTH(created_at) = ? AND YEAR(created_at) = ?", [$currentMonth, $currentYear])->count();
-            if ($newPatients === 0) $newPatients = $totalPatients;
 
             $totalRecords = HealthRecord::count();
             $recentRecords = HealthRecord::orderBy('date', 'desc')->take(60)->get();

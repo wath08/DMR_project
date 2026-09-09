@@ -1,6 +1,6 @@
-export const API_BASE_URL = 'http://localhost';
+// export const API_BASE_URL = 'http://localhost';
 
-// export const API_BASE_URL = 'https://dmr-project-mwmp.onrender.com';
+export const API_BASE_URL = 'https://dmr-project-mwmp.onrender.com';
 
 export const resolveServerUrl = (path: string) => {
   if (!path) return '';
