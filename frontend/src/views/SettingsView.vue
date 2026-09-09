@@ -94,64 +94,7 @@
             <p class="text-xs text-slate-400 mt-0.5">Update your personal photo and account details.</p>
           </div>
           
-          <!-- Avatar Card Row -->
-          <div class="flex items-center gap-6 p-5 bg-slate-50/50 rounded-2xl border border-slate-100 mb-8">
-            <div 
-              class="relative shrink-0 group cursor-pointer" 
-              @click="triggerFileSelect"
-              title="Click to change photo"
-            >
-              <img 
-                :src="displayAvatar" 
-                @error="onImageError"
-                alt="Profile Avatar" 
-                class="w-20 h-20 rounded-full object-cover border-2 border-white shadow-sm ring-2 ring-slate-200/70 bg-slate-100 transition-transform duration-200 group-hover:ring-teal-500 group-hover:scale-[1.02]" 
-              />
-              <!-- Subtle Hover Overlay -->
-              <div class="absolute inset-0 rounded-full bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <Camera class="w-5 h-5 text-white drop-shadow-md" />
-              </div>
-              <input 
-                type="file" 
-                ref="fileInputRef" 
-                accept="image/png, image/jpeg, image/gif, image/webp" 
-                class="hidden" 
-                @change="handleFileSelect" 
-              />
-              <button 
-                type="button" 
-                @click.stop="triggerFileSelect"
-                class="absolute bottom-0 right-0 w-7 h-7 bg-teal-600 hover:bg-teal-700 text-white rounded-full flex items-center justify-center shadow-md border-2 border-white cursor-pointer transition-all group-hover:scale-110"
-                title="Change Avatar"
-              >
-                <Camera class="w-3.5 h-3.5" />
-              </button>
-            </div>
 
-            <div>
-              <h3 class="font-bold text-slate-800 text-base leading-snug">{{ profileName || 'admin' }}</h3>
-              <p class="text-xs text-slate-500 mt-1">JPG, GIF or PNG. Max size of 800K</p>
-              
-              <div class="flex items-center gap-3 mt-2">
-                <button 
-                  type="button" 
-                  @click="triggerFileSelect" 
-                  class="text-xs font-semibold text-teal-600 hover:text-teal-700 cursor-pointer"
-                >
-                  Upload new image
-                </button>
-                <span v-if="hasCustomAvatar" class="text-slate-300">•</span>
-                <button 
-                  v-if="hasCustomAvatar" 
-                  type="button" 
-                  @click="removeAvatar" 
-                  class="text-xs font-semibold text-rose-500 hover:text-rose-600 cursor-pointer"
-                >
-                  Remove photo
-                </button>
-              </div>
-            </div>
-          </div>
 
           <!-- Form Fields Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
