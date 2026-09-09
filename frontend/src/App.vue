@@ -149,7 +149,7 @@
               </router-link>
             </div>
             <div class="py-1">
-              <button @click="handleLogout" class="w-full text-left block px-4 py-2.5 text-[14px] font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+              <button @click="handleLogout" class="w-full text-left block px-4 py-2.5 text-[14px] font-medium text-rose-600 hover:bg-rose-50 transition-colors">
                 Sign out
               </button>
             </div>
