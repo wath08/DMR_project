@@ -269,7 +269,7 @@ const fetchDashboardStats = async () => {
         if (!p.created_at) return true
         const d = new Date(p.created_at)
         return d.getMonth() === currentMonth && d.getFullYear() === currentYear
-      }).length || patientsRes.data.length
+      }).length
     } else if (Array.isArray(patientsRes)) {
       totalPatients.value = patientsRes.length
       activePatients.value = patientsRes.length

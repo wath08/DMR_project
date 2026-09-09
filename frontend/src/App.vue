@@ -105,19 +105,25 @@
           </button>
         </div>
 
-        <div class="flex items-center gap-2">
-          <button @click="isProfileOpen = !isProfileOpen" class="flex items-center gap-2 md:gap-3 hover:bg-slate-50 p-2 rounded-lg transition-colors focus:outline-none cursor-pointer">
-            <img 
-              :src="userAvatar || defaultAvatar" 
-              @error="handleImageFallback"
-              alt="Doctor Avatar" 
-              class="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover border-2 border-teal-500 shadow-2xs bg-slate-100 shrink-0" 
-            />
-            <div class="flex flex-col text-left hidden sm:flex">
-              <span class="text-[14px] font-bold text-slate-800 leading-tight">{{ username }}</span>
-              <span class="text-[11px] text-slate-400 font-medium capitalize">{{ userRole }}</span>
+        <!-- Center: Daily Quote (Hidden on Mobile/Tablet to save space) -->
+        <div class="hidden lg:flex flex-1 justify-center mx-4 xl:mx-8">
+          <p class="text-[13px] xl:text-[14px] text-slate-500 italic font-medium px-4 text-center">
+            "The good physician treats the disease; the great physician treats the patient who has the disease."
+          </p>
+        </div>
+
+        <!-- Right Side: Profile -->
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2">
+          <button @click="isProfileOpen = !isProfileOpen" class="flex items-center gap-2.5 md:gap-3 border border-slate-200 hover:border-slate-300 hover:shadow-sm bg-white p-1 pr-1 sm:pr-4 rounded-full transition-all focus:outline-none cursor-pointer">
+            <div class="w-[38px] h-[38px] rounded-full bg-blue-600 text-white flex items-center justify-center text-[14px] font-bold tracking-wide shrink-0 shadow-sm">
+              {{ userInitials }}
             </div>
-            <ChevronDown class="w-4 h-4 text-slate-400 hidden sm:block transition-transform duration-200" :class="{ 'rotate-180': isProfileOpen }" />
+            <div class="flex-col text-left hidden sm:flex justify-center">
+              <span class="text-[14px] font-semibold text-slate-800 leading-tight tracking-tight">{{ username }}</span>
+              <span class="text-[12px] text-slate-500 font-medium leading-none mt-0.5">{{ userEmail }}</span>
+            </div>
+            <ChevronDown class="w-4 h-4 text-slate-400 hidden sm:block transition-transform duration-200 ml-1" :class="{ 'rotate-180': isProfileOpen }" />
           </button>
           
           <!-- Hamburger Menu (Mobile Only) on the Right -->
@@ -131,36 +137,24 @@
           <!-- Click outside overlay -->
           <div v-if="isProfileOpen" @click="isProfileOpen = false" class="fixed inset-0 z-40"></div>
           
-          <!-- Profile Dropdown -->
-          <div v-if="isProfileOpen" class="absolute top-[70px] right-4 md:right-8 w-[280px] bg-white border border-slate-100 rounded-2xl shadow-xl z-50 overflow-hidden" style="animation: fadeIn 0.2s ease-in-out;">
-            <div class="p-5 border-b border-slate-100 relative">
-              <button @click="isProfileOpen = false" class="absolute top-3 right-3 text-slate-400 hover:text-rose-500 hover:bg-rose-50 p-1.5 rounded-full transition-colors group cursor-pointer" title="Close">
-                <X class="w-4 h-4 group-hover:scale-110 transition-transform" />
-              </button>
-              <div class="flex flex-col items-center text-center mt-2">
-                <img 
-                  :src="userAvatar || defaultAvatar" 
-                  @error="handleImageFallback"
-                  alt="Doctor Avatar" 
-                  class="w-16 h-16 rounded-full object-cover border-2 border-teal-500 mb-3 shadow-sm bg-slate-100" 
-                />
-                <span class="text-[16px] font-bold text-slate-800 leading-tight">{{ username }}</span>
-                <span class="text-[12px] text-slate-500 mt-0.5">{{ userEmail }}</span>
-                <span class="mt-2 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200">
-                  {{ userRole }}
-                </span>
-              </div>
+          <!-- New Simple Profile Dropdown -->
+          <div v-if="isProfileOpen" class="absolute top-[70px] right-4 md:right-8 w-[240px] bg-white border border-slate-100 rounded-xl shadow-lg z-50 py-1" style="animation: fadeIn 0.1s ease-out;">
+            <div class="px-4 py-3 border-b border-slate-100 flex flex-col">
+              <span class="text-[14px] font-bold text-slate-800 leading-tight capitalize">{{ username }}</span>
+              <span class="text-[12px] text-slate-500 mt-0.5 truncate">{{ userEmail }}</span>
             </div>
-            <div class="p-2">
-              <router-link to="/settings" class="flex items-center justify-between px-4 py-2.5 text-[14px] font-medium text-slate-600 hover:bg-slate-50 hover:text-teal-600 rounded-xl transition-colors" @click="isProfileOpen = false">
-                <div class="flex items-center gap-3">
-                  <User class="w-4 h-4" />
-                  <span>Edit Profile</span>
-                </div>
-                <Edit class="w-4 h-4" />
+            <div class="py-1 border-b border-slate-100">
+              <router-link to="/settings" class="block px-4 py-2.5 text-[14px] font-medium text-slate-700 hover:bg-slate-50 transition-colors" @click="isProfileOpen = false">
+                Account Security
               </router-link>
             </div>
+            <div class="py-1">
+              <button @click="handleLogout" class="w-full text-left block px-4 py-2.5 text-[14px] font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+                Sign out
+              </button>
+            </div>
           </div>
+        </div>
         </div>
       </header>
 
@@ -177,7 +171,9 @@ import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { api, resolveServerUrl } from './services/api'
 import defaultAvatar from '@/assets/profiledefault.svg'
-import { 
+import {
+  Search,
+  Bell,
   LineChart, 
   Users, 
   FileText, 
@@ -205,6 +201,16 @@ const userAvatar = ref<string>('')
 const isProfileOpen = ref(false)
 const isMobileSidebarOpen = ref(false)
 const isSidebarCollapsed = ref(false)
+
+
+const userInitials = computed(() => {
+  if (!username.value) return 'U'
+  const words = username.value.split(' ')
+  if (words.length > 1) {
+    return (words[0][0] + words[1][0]).toUpperCase()
+  }
+  return username.value.substring(0, 2).toUpperCase()
+})
 
 const handleImageFallback = (e: Event) => {
   const img = e.target as HTMLImageElement
@@ -264,11 +270,12 @@ const onProfileUpdated = () => {
 
 onMounted(() => {
   loadUserProfile()
-  window.addEventListener('profile-updated', onProfileUpdated)
+  // Listen for storage events (e.g. avatar changed in SettingsView)
+  window.addEventListener('storage', loadUserProfile)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('profile-updated', onProfileUpdated)
+  window.removeEventListener('storage', loadUserProfile)
 })
 
 // Keep profile in sync on route changes

@@ -352,6 +352,7 @@
                   <tr class="h-12">
                     <th class="px-6 font-semibold text-[13px] tracking-wide">Date</th>
                     <th class="px-6 font-semibold text-[13px] tracking-wide">Patient</th>
+                    <th class="px-6 font-semibold text-[13px] tracking-wide">Gender</th>
                     <th class="px-6 font-semibold text-[13px] tracking-wide">Record Type</th>
                     <th class="px-6 font-semibold text-[13px] tracking-wide">Status</th>
                     <th class="px-6 font-semibold text-[13px] tracking-wide text-center">Actions</th>
@@ -372,6 +373,11 @@
                           <div class="text-xs text-slate-400 mt-0.5">({{ record.patientId }})</div>
                         </div>
                       </div>
+                    </td>
+                    <td class="px-6 py-4">
+                      <span class="text-sm font-medium" :class="record.gender === 'Female' ? 'text-pink-600' : 'text-blue-600'">
+                        {{ record.gender || 'Unknown' }}
+                      </span>
                     </td>
                     <td class="px-6 py-4">
                       <span :class="['px-3 py-1 rounded-full text-xs font-bold border inline-flex items-center', getBadgeClass(record.recordType)]">
@@ -401,7 +407,7 @@
                   
                   <!-- Empty State (Keeps same balanced height) -->
                   <tr v-if="filteredRecords.length === 0">
-                    <td colspan="5" class="px-6 py-24 text-center bg-slate-50/30">
+                    <td colspan="6" class="px-6 py-24 text-center bg-slate-50/30">
                       <div class="flex flex-col items-center justify-center text-slate-400">
                         <FileText class="w-12 h-12 mb-3 text-slate-300" />
                         <p class="text-[15px] font-medium text-slate-600">No health records found</p>
